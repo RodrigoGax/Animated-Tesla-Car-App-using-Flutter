@@ -9,7 +9,6 @@ import 'components/battery_status.dart';
 import 'components/door_lock.dart';
 import 'components/temp_details.dart';
 import 'components/tesla_bottom_navigationbar.dart';
-import 'components/tmp_btn.dart';
 import 'components/tyre_psi_card.dart';
 import 'components/tyres.dart';
 
@@ -33,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late Animation<double> _animationCoolGlow;
 
   late AnimationController _tyreAnimationController;
-  // We want to animate each tyre one by one
+  
   late Animation<double> _animationTyre1Psi;
   late Animation<double> _animationTyre2Psi;
   late Animation<double> _animationTyre3Psi;
@@ -41,9 +40,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   late List<Animation<double>> _tyreAnimations;
 
-  // Great Job guys
-  // We are done with our animation serise
-  // Thank You!
+
 
   void setupBatteryAnimation() {
     _batteryAnimationController = AnimationController(
@@ -163,12 +160,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   return Stack(
                     alignment: Alignment.center,
                     children: [
-                      // Let's fixed it
+                      
                       SizedBox(
                         height: constrains.maxHeight,
                         width: constrains.maxWidth,
                       ),
-                      // Nothing really chnage, let's fix that
+                      
                       Positioned(
                         left:
                             constrains.maxWidth / 2 * _animationCarShift.value,
@@ -268,12 +265,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           opacity: _animationTempShowInfo.value,
                           child: TempDetails(controller: _controller),
                         ),
-                      ),
-                      // We also need to animate the glow
+                      ),                      
                       Positioned(
                         right: -180 * (1 - _animationCoolGlow.value),
                         child: AnimatedSwitcher(
                           duration: defaultDuration,
+                          
                           child: _controller.isCoolSelected
                               ? Image.asset(
                                   "assets/images/Cool_glow_2.png",
@@ -291,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       // Tyre
                       if (_controller.isShowTyre) ...tyres(constrains),
                       if (_controller.isShowTyreStatus)
-                        // Let's add the animation
+                        
 
                         GridView.builder(
                           itemCount: 4,

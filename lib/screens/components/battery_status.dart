@@ -15,7 +15,7 @@ class BatteryStatus extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "220 mi",
+          "354 km",
           style: Theme.of(context)
               .textTheme
               .headline3!
@@ -27,11 +27,11 @@ class BatteryStatus extends StatelessWidget {
         ),
         Spacer(),
         Text(
-          "Charging".toUpperCase(),
+          "Cargando".toUpperCase(),
           style: TextStyle(fontSize: 20),
         ),
         Text(
-          "18 min remaining",
+          "18 min restantes",
           style: TextStyle(fontSize: 20),
         ),
         SizedBox(height: constrains.maxHeight * 0.14),
@@ -43,7 +43,7 @@ class BatteryStatus extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("22 mi/hr"),
+              Text(""),
               Text("232 v"),
             ],
           ),

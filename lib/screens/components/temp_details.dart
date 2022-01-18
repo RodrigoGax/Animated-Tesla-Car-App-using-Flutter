@@ -4,8 +4,7 @@ import '../../constanins.dart';
 import '../../home_controller.dart';
 import 'tmp_btn.dart';
 
-// This is what we want
-class TempDetails extends StatelessWidget {
+class TempDetails extends StatefulWidget {
   const TempDetails({
     Key? key,
     required HomeController controller,
@@ -13,6 +12,13 @@ class TempDetails extends StatelessWidget {
         super(key: key);
 
   final HomeController _controller;
+
+  @override
+  State<TempDetails> createState() => _TempDetailsState();
+}
+
+class _TempDetailsState extends State<TempDetails> {
+  int counter = 19;
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +32,19 @@ class TempDetails extends StatelessWidget {
             child: Row(
               children: [
                 TempBtn(
-                  isActive: _controller.isCoolSelected,
+                  isActive: widget._controller.isCoolSelected,
+                     
                   svgSrc: "assets/icons/coolShape.svg",
-                  title: "Cool",
-                  press: _controller.updateCoolSelectedTab,
+                  title: "Frío",
+                  press: widget._controller.updateCoolSelectedTab,
                 ),
                 const SizedBox(width: defaultPadding),
                 TempBtn(
-                  isActive: !_controller.isCoolSelected,
+                  isActive: !widget._controller.isCoolSelected,
                   svgSrc: "assets/icons/heatShape.svg",
-                  title: "Heat",
+                  title: "Calor",
                   activeColor: redColor,
-                  press: _controller.updateCoolSelectedTab,
+                  press: widget._controller.updateCoolSelectedTab,
                 ),
               ],
             ),
@@ -47,22 +54,40 @@ class TempDetails extends StatelessWidget {
             children: [
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  counter++;
+
+                  if (counter >= 20) {
+                    widget._controller.isCoolSelected = false;
+                  } else {
+                    widget._controller.isCoolSelected = true;
+                  }
+                  setState(() {});
+                },
                 icon: Icon(Icons.arrow_drop_up, size: 48),
               ),
               Text(
-                "29" + "\u2103",
+                "$counter" + "\u2103",
                 style: TextStyle(fontSize: 86),
               ),
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  counter--;
+
+                  if (counter < 20) {
+                    widget._controller.isCoolSelected = true;
+                  } else {
+                    widget._controller.isCoolSelected = false;
+                  }
+                  setState(() {});
+                },
                 icon: Icon(Icons.arrow_drop_down, size: 48),
               ),
             ],
           ),
           Spacer(),
-          Text("CURRENT TEMPERATURE"),
+          Text("TEMPERATURA ACTUAL"),
           const SizedBox(height: defaultPadding),
           Row(
             children: [
@@ -70,10 +95,10 @@ class TempDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Inside".toUpperCase(),
+                    "Adentro".toUpperCase(),
                   ),
                   Text(
-                    "20" + "\u2103",
+                    "$counter" + "\u2103",
                     style: Theme.of(context).textTheme.headline5,
                   )
                 ],
@@ -83,7 +108,7 @@ class TempDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Inside".toUpperCase(),
+                    "Afuera".toUpperCase(),
                     style: TextStyle(color: Colors.white54),
                   ),
                   Text(

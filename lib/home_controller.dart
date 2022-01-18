@@ -44,7 +44,7 @@ class HomeController extends ChangeNotifier {
 
   void showTyreController(int index) {
     // Once user on this tyre tab we want to show the tyre
-    // let's define this method on bottom navigation
+    
     if (selectedBottomTab != 3 && index == 3) {
       // Because we call this method before [onBottomNavigationTabChange]
       // as you can see we want to show those tyres a little bit later

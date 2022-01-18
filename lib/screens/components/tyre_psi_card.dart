@@ -28,7 +28,7 @@ class TyrePsiCard extends StatelessWidget {
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                lowPressureText(context),
+                if (tyrePsi.isLowPressure) lowPressureText(context),
                 Spacer(),
                 psiText(context, psi: tyrePsi.psi.toString()),
                 const SizedBox(height: defaultPadding),
@@ -48,7 +48,7 @@ class TyrePsiCard extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
                 Spacer(),
-                lowPressureText(context),
+                if (tyrePsi.isLowPressure) lowPressureText(context),
               ],
             ),
     );
@@ -56,17 +56,18 @@ class TyrePsiCard extends StatelessWidget {
 
   Column lowPressureText(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "Low".toUpperCase(),
-          style: Theme.of(context)
-              .textTheme
-              .headline3!
-              .copyWith(color: Colors.white, fontWeight: FontWeight.w600),
+          "Presión".toUpperCase(),
+          style: TextStyle(fontSize: 35),
         ),
         Text(
-          "Pressure".toUpperCase(),
-          style: TextStyle(fontSize: 20),
+          "Baja".toUpperCase(),
+          style: Theme.of(context)
+              .textTheme
+              .headline4!
+              .copyWith(color: Colors.white, fontWeight: FontWeight.w600),
         ),
       ],
     );
